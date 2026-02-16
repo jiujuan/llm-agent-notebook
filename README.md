@@ -1,2 +1,1 @@
-# Pegasus
-pegasus
+AI 大模型学习与进阶笔记
