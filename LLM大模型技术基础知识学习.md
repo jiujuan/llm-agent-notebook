@@ -89,6 +89,8 @@ LLM 可以被理解为 NLP 领域的一次质的飞跃。
 
 2017年，谷歌的研究团队发表了划时代的论文**《Attention Is All You Need》**，提出了 **Transformer** 架构。这一架构完全摒弃了循环结构，仅依靠注意力机制（Attention Mechanism）来处理序列数据。
 
+![transfromer架构](./images/transfromer-output-input-arch.png)
+
 Transformer的出现解决了 RNN 的两个核心痛点：
 
 第一，它支持并行计算，能够同时处理序列中的所有位置，大大提高了计算效率；
@@ -351,5 +353,5 @@ LLM 技术的发展代表了人工智能领域的重大突破，它让机器第�
 - https://cloud.tencent.com/developer/article/2416550  LLM 大模型学习必知必会系列(一)：大模型基础知识篇 汀丶人工智能
 - https://zhuanlan.zhihu.com/p/638884759  【重温经典】Attention is all you need 6周年重读（上）
 - https://zhuanlan.zhihu.com/p/1955006993891828447【重温经典】Attention is all you need 6周年重读（中）
-- https://huggingface.co/learn/llm-course/chapter6/4  Normalization and pre-tokenization
+- https://huggingface.co/learn/llm-course/chapter6/4  Normalization and pre-tokenization - huggingface.co
 - https://www.ibm.com/cn-zh/think/topics/neural-networks  IBM 什么是神经网络？
