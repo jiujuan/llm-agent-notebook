@@ -30,7 +30,7 @@ AI Agent 的特征包括：
 
 第四是模型部署与服务化相关的知识。虽然不是每个 Agent 开发者都需要训练模型，但理解模型推理的性能特征、资源消耗、以及如何通过 API 或本地部署方式调用模型是必要的基础知识。
 
-### AI Agent核心概念与技术
+### AI Agent核心概念
 
 下面这张图是 OpenAI 应用研究主管翁丽莲(Lilian Weng)写的一篇 blog 文章里的: [LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/)，将 Agent 定义为`LLM + memory + planning + Tools + Action`，即大语言模型、记忆、任务规划、工具使用的集合。
 
@@ -54,9 +54,9 @@ AI Agent 的特征包括：
 
 - 推理引擎（Reasoning Engine）：负责分析信息和做出决策，一般是调用 LLM 做推理。比如确定请求类型是查询、生成还是操作等。任务分解与规划，将复杂任务划分为多个子步骤等。
 
-- 工具库（Tools）或执行模块：将决策结果转换为具体执行动作。比如工具的调用、对 API 接口调用或外部系统控制，是实际完成任务的系统。
+- 工具库（Tools）、行动模块：将决策结果转换为具体执行动作。比如工具的调用、对 API 接口调用或外部系统控制，是实际完成任务的系统。
 
-- 记忆系统（Memory）：负责存储和检索信息。存储 Agent 智能体运行过程中的短期与长期记忆的信息，包括用户历史对话信息、中间状态信息、上下文摘要等，是支持多轮交互与状态保持的记忆系统。
+- 记忆模块（Memory）：负责存储和检索信息。存储 Agent 智能体运行过程中的短期与长期记忆的信息，包括用户历史对话信息、中间状态信息、上下文摘要等，是支持多轮交互与状态保持的记忆系统。
 
 这四个组件相互作用组成复杂 Agent 系统的基础。
 
@@ -147,9 +147,117 @@ AI Agent 的特征包括：
 
 ![AI-Agent应用技术分层架构](./images/aI-agent-app-arch-layer.png)
 
-## 四、Agent执行流程
+## 四、Agent模块协作流程
 
+AI Agent 的架构设计通常遵循“感知-规划-行动”的经典范式，各模块各司其职，形成一个完整的认知闭环。
 
+### 核心模块组成与职责
+
+| 模块            | 核心职责                                                     | 关键技术/实现                                               |
+| :-------------- | :----------------------------------------------------------- | :---------------------------------------------------------- |
+| **1. 感知模块** | 作为 Agent 的“五官”，负责接收、理解并融合来自用户或环境的输入信息（文本、图像、语音等）。 | 大语言模型、多模态模型、语音识别                            |
+| **2. 记忆模块** | 作为 Agent 的数据库与经验库，负责存储和管理信息。            | - 短期记忆：当前会话上下文 - 长期记忆：向量数据库、知识图谱 |
+| **3. 规划模块** | 作为Agent的“大脑”，负责拆解复杂任务、制定执行计划，并在执行后反思优化。 | 思维链、ReAct、任务分解、自我反思                           |
+| **4. 行动模块** | 作为Agent的“手脚”，负责执行规划好的具体动作，并调用外部工具完成任务。 | 函数调用、代码解释器、API集成                               |
+| **5. 工具集**   | Agent的外部能力，让Agent突破自身局限，获取实时信息或执行实际操作。 | 搜索引擎、计算器、数据库查询、第三方API                     |
+
+### 协作流程
+
+整个系统的工作流程如下：
+
+1. **感知与输入**：用户输入任务后，感知模块进行预处理。
+
+2. **记忆检索**：系统立即检索长期记忆中的相关知识，并结合短期记忆，将上下文注入给规划模块。
+
+3. **规划与决策**：规划模块对任务进行拆解，制定出包含一系列步骤的初始计划，并决定每一步需要调用哪些工具。
+
+4. **循环执行（核心）**：这是最关键的环节。Agent 进入“**思考-行动-观察**” 的循环：
+   - 思考：根据当前状态决定下一步行动。
+
+   - 行动：行动模块调用相应工具，传入参数并执行。
+
+   - 观察：获取工具执行后的反馈结果。
+
+ 此循环将持续进行，直到任务完成或达到终止条件。
+
+5. **记忆更新**：整个过程中的关键信息、中间结果和最终答案，都会被编码并存储到长期记忆中，以供未来复用。
+
+下图是 AI Agent（基于ReAct模式）内部执行流程图，展示了从用户输入到最终输出的完整闭环。
+
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {
+  'primaryColor': '#4A90E2',
+  'primaryTextColor': '#fff',
+  'primaryBorderColor': '#2C3E50',
+  'lineColor': '#5D6D7E',
+  'secondaryColor': '#F39C12',
+  'tertiaryColor': '#2ECC71',
+  'background': '#F8F9F9',
+  'mainBkg': '#FFFFFF',
+  'nodeBorder': '#BDC3C7',
+  'clusterBkg': '#FEF9E7'
+}}}%%
+graph TD
+    %% 定义样式
+    classDef startEnd fill:#4A90E2,stroke:#2C3E50,stroke-width:2px,color:white;
+    classDef process fill:#F39C12,stroke:#E67E22,stroke-width:2px,color:white;
+    classDef memory fill:#2ECC71,stroke:#27AE60,stroke-width:2px,color:white;
+    classDef action fill:#E74C3C,stroke:#C0392B,stroke-width:2px,color:white;
+    classDef tool fill:#9B59B6,stroke:#8E44AD,stroke-width:2px,color:white;
+    classDef decision fill:#F1C40F,stroke:#F39C12,stroke-width:2px,color:#2C3E50;
+
+    Start([用户输入任务]):::startEnd
+    
+    subgraph 感知与记忆层
+        A[感知模块<br/>处理输入]:::process
+        B[(长期记忆)]:::memory
+        C[注入上下文<br/>短期记忆]:::process
+    end
+    
+    subgraph 规划层
+        D[规划模块<br/>任务拆解与制定计划]:::process
+        E{是否需要<br/>执行行动?}:::decision
+    end
+    
+    subgraph 执行循环层
+        F[行动模块<br/>决策调用工具]:::action
+        G[(工具集<br/>API/搜索/代码等)]:::tool
+        H[获取观察结果<br/>反馈]:::process
+    end
+    
+    subgraph 最终输出
+        I[整合结果<br/>生成最终答案]:::process
+        J([输出给用户]):::startEnd
+        K[(更新长期记忆<br/>经验存储)]:::memory
+    end
+
+    Start --> A
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    
+    E -->|是| F
+    F --> G
+    G --> H
+    H --> D
+    
+    E -->|否| I
+    I --> J
+    I --> K
+    
+    K -.-> B
+
+```
+
+上面流程图逻辑说明：
+
+- 蓝色节点：流程的起止与核心决策点。
+- 橙色节点：核心的处理模块（感知、规划、行动）。
+- 绿色节点：记忆相关模块（短期与长期记忆），其中更新长期记忆用虚线连接，表示这是一个异步的后台过程。
+- 紫色节点：工具集，代表 Agent 可调用的外部能力。
+
+上图中的关键循环：从 **规划模块** 到 **行动模块**，再到 **工具集**，最后 **反馈** 回规划模块，形成“思考-行动-观察”的闭环，这是 Agent 智能化的核心体现。
 
 ## 参考
 
