@@ -119,11 +119,13 @@ Transformer 的革命性在于它证明了：
 
 从技术实现角度，注意力机制通过三个关键矩阵来完成计算：
 
-**查询矩阵(Query)** 代表当前位置的“需求”，
+**查询矩阵(Query)** 代表当前位置的“需求”。Query（查询）是一个特征向量，描述我们在序列中寻找什么，即我们可能想要注意什么。
 
-**键矩阵(Key)** 代表每个位置能够提供的“信息”，
+**键矩阵(Key)** 代表每个位置能够提供的“信息”。每个输入元素有一个键，它也是一个特征向量。该特征向量粗略地描述了该元素“提供”什么，或者它何时可能很重要。键的设计应该使得我们可以根据 Query 来识别我们想要关注的元素。
 
-**值矩阵(Value)** 则是实际的信息内容。
+**值矩阵(Value)** 则是实际的信息内容。每个输入元素，我们还有一个值向量。这个向量就是我们想要平均的向量。
+
+还有一个关键概念：**Score function 评分函数**，为了对想要关注的元素进行评分，我们需要指定一个评分函数 f ，该函数将查询和键作为输入，并输出查询-键对的得分/注意力权重。它通常通过简单的相似性度量来实现。
 
 模型通过计算 Query 与 Key 的相似度来确定注意力权重，然后用这些权重对 Value 进行加权求和，得到最终的输出。这种设计精妙地实现了按需获取信息的功能。
 
@@ -351,9 +353,21 @@ LLM 技术的发展代表了人工智能领域的重大突破，它让机器第�
 ## 八、参考
 
 - https://arxiv.org/abs/1706.03762 Attention Is All You Need
+
 - https://blog.dailydoseofds.com/p/implement-attention-is-all-you-need Implement "Attention is all you need"
+
+- https://jalammar.github.io/illustrated-transformer/  The Illustrated Transformer 图解transformer 作者：Jay Alammar
+
+- https://www.zhihu.com/question/445556653 如何最简单、通俗地理解Transformer
+
 - https://cloud.tencent.com/developer/article/2416550  LLM 大模型学习必知必会系列(一)：大模型基础知识篇 汀丶人工智能
+
 - https://zhuanlan.zhihu.com/p/638884759  【重温经典】Attention is all you need 6周年重读（上）
+
 - https://zhuanlan.zhihu.com/p/1955006993891828447【重温经典】Attention is all you need 6周年重读（中）
+
 - https://huggingface.co/learn/llm-course/chapter6/4  Normalization and pre-tokenization - huggingface.co
+
 - https://www.ibm.com/cn-zh/think/topics/neural-networks  IBM 什么是神经网络？
+
+  
