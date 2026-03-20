@@ -78,7 +78,7 @@ AI Agent 的特征包括：
 
 **Agentic AI 技术栈分层图**
 
-![Agent Stack 技术栈分8层图](./images/The 8-Layer-Architechure-of-Agenitic-AI-ai-tech-guide.webp)
+![Agent Stack 技术栈分8层图](./images/The 8-Layer-Architechure-of-Agenitic-AI-ai-tech-guide.png)
 
 （图来自：[Aakash Gupta](https://aakashgupta.medium.com/?source=post_page---byline--6794d75ac988---------------------------------------)）
 
