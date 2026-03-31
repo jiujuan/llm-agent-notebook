@@ -256,7 +256,7 @@ AI Agent 的上下文由多个层次的信息构成，形成一个完整的信�
 
 一个关键的实践经验是：在上下文中保留"错误的转折"有时反而有助于 Agent 学习避免类似错误，这种反直觉的发现说明上下文工程需要深入的实践经验和持续的迭代优化。
 
-![](./images/ai-agent-context-agent-and-context-engineering-technical -stack.png)
+![Agent智能体架构-上下文](./images/ai-agent-context-agent-and-context-engineering-technical-stack.png)
 
 ### 上下文工程实践案例：Manus 的经验
 
