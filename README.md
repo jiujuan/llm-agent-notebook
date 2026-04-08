@@ -8,12 +8,13 @@ AI 大模型和Agent学习与进阶笔记
   
 - [RAG应用开发相关的50个重要概念解释](./RAG应用开发相关的50个重要概念解释.md)
   
-- [prompts提示词和prompt engineering提示词工程基础学习](./prompts提示词和prompt engineering提示词工程基础学习.md)
+- [prompts提示词和prompt engineering提示词工程基础学习](./prompts提示词和prompt-engineering提示词工程基础学习.md)
   
-- [LLM大模型中AI Agent智能体应用开发相关知识介绍](./LLM大模型中AI Agent智能体应用开发相关知识介绍.md)
+- [LLM大模型中AI Agent智能体应用开发相关知识介绍](./LLM大模型中AI-Agent智能体应用开发相关知识介绍.md)
   
-- [AI大模型中的Function Call函数调用详解](./AI大模型中的Function Call函数调用详解.md)
+- [AI大模型中的Function Call函数调用详解](./AI大模型中的Function-Call函数调用详解.md)
   
 - [AI Agent上下文工程(context engineering)知识学习总结](./AI Agent上下文工程(context engineering)知识学习总结.md)
   
-- [构建高效的智能体(译) anthropic](./构建高效的智能体(译) anthropic.md)
+- [(译) 构建高效的智能体-anthropic](./(译) 构建高效的智能体-anthropic.md)
+
