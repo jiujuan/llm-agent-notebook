@@ -35,7 +35,7 @@ Provider Packages
 
 
 
-## 主要组件
+## 主要组件介绍
 
 ### Agents
 
@@ -335,20 +335,6 @@ def create_agent(
 ```
 
 更多信息参考文档：https://docs.langchain.com/oss/python/langchain/structured-output
-
-## 示例：构建最简单的RAG
-
-RAG（Retrieval-Augmented Generation，检索增强生成）是一种结合检索和生成的混合式深度学习模型架构。RAG通过将外部知识库中的信息与生成模型结合，可以提供更准确和上下文相关的答案，有效解决大语言模型的知识截止问题和幻觉问题。
-
-RAG系统分为两个主要阶段：
-
-**索引构建阶段（Indexing）**和**检索生成阶段（Retrieval & Generation）**。
-
-索引构建阶段包括：
-
-加载文档、文本分割、嵌入向量化、存储到向量数据库。检索生成阶段包括：将用户问题向量化、从向量数据库检索相关文档、构建增强Prompt、调用LLM生成答案。
-
-
 
 ## 参考
 
