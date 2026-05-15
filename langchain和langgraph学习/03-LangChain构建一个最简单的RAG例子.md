@@ -155,4 +155,3 @@ while True:
 
 ![rag-question-answer](D:/writer/llm-agent-notebook/images/simple_rag_question_answer-img.png)
 
-## 

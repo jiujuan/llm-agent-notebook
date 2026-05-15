@@ -5,11 +5,12 @@ LangChain 是由 Harrison Chase 于 2022 年 10 月开发的开源框架，旨�
 ## LangChain 整体组件
 
 >  LangChain v1.2.17 版本
+>
 
-LangChain 的主要组件
+### **LangChain 的主要组件**
 
 ```bash
-LangChain v1.2.17
+LangChain 
 ├── Agent Layer
 ├── Model Layer
 ├── Tool Layer
@@ -33,7 +34,16 @@ LangGraph
 Provider Packages
 ```
 
+- LangChain：
 
+  LangChain 是开始构建基于大型语言模型（LLM）的 AI Agent 和应用程序的最简便方式。只需不到 10 行代码，您即可连接 OpenAI、Anthropic、Google 等平台。LangChain 提供预构建的智能代理架构和模型集成方案，助您快速入门，并将大型语言模型无缝融入您的智能代理和应用程序中。
+
+- LangChain Core：
+  LangChain Core 包含驱动 LangChain 生态系统的基础抽象。这些抽象设计得尽可能模块化和简单
+  
+- LangGraph：
+
+  LangGraph 是一个用于构建具有弹性的 Agents（以图的形式表示）的框架。langgraph 包是主要入口，提供了定义带状态、多步骤代理工作流所需的一切。以下包共同构成了 LangGraph 生态系统：
 
 ## 主要组件介绍
 
