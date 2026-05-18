@@ -346,6 +346,36 @@ def create_agent(
 
 更多信息参考文档：https://docs.langchain.com/oss/python/langchain/structured-output
 
+## langchain与langgraph主要区别
+
+一句话概括：
+
+- **LangChain** ： AI 应用的「组件工具箱 + 线性编排层」
+
+  提供模型、提示词、工具、检索、记忆等基础零件，擅长固定顺序、线性任务
+
+- **LangGraph** ： AI Agent 的「状态驱动图编排引擎」
+
+  负责复杂控制流、全局状态、循环 / 分支 / 反思、多轮决策，是高级智能体的核心调度层。
+
+总结关系：LangGraph 是 LangChain 生态的底层增强版。LangChain 1.0+ 开始 Agent 底层默认就是 LangGraph。
+
+它们之间的区别：
+
+| 维度           | LangChain                                      | LangGraph                                                    |
+| -------------- | ---------------------------------------------- | ------------------------------------------------------------ |
+| **编程模型**   | 链式（Chain）：单向、线性、无环 DAG            | 图式（Graph）：节点 + 边，原生支持分支、循环、并行           |
+| **状态管理**   | 隐式、分散、靠参数传递；无全局统一状态，记忆弱 | 显式全局 State，所有节点共享；支持增量更新 + Reducer 合并 + 持久化 Checkpoint |
+| **控制流能力** | 固定 A→B→C；条件 / 循环需手写大量代码          | 条件边 + 循环边；LLM 可动态决定下一步                        |
+| **适用场景**   | 简单问答、RAG、数据抽取、固定流水线            | ReAct Agent、多智能体、长任务、反思循环、人工介入、复杂决策  |
+| **抽象层级**   | 高层组件库，开箱即用                           | 底层编排框架，自由度极高、需手动定义 Node/Edge/State         |
+
+LangChain 提供模型、工具、记忆、检索等基础能力。解决能做什么的问题。
+
+LangGraph 提供状态管理、控制流、决策循环、持久化。解决如何思考、如何决策、如何循环的复杂Agent问题。
+
+
+
 ## 参考
 
 - https://docs.langchain.com/oss/python/langchain/overview langchain概述
