@@ -394,6 +394,8 @@ flowchart LR
 ```
 ````
 
+![PromptBuilder的标准流水线](../images/ai-agent-promptspec-RuntimeContext-ModelProfile-img.png)
+
 伪代码：
 
 ```typescript
