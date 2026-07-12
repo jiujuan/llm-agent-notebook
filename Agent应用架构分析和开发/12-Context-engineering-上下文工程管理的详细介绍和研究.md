@@ -88,7 +88,7 @@ Context Engineering 的核心在于**将上下文视为动态结构化系统**�
 
 > 比如说我是一个市场分析人员，想做一个关于市场分析的AI Agent，技术用Python+SQLite，用到上面提到的Context engineering各种机制，让Agent不出现幻觉、无关信息干扰、重复决策、偏离目标、状态丢失、无法处理长时程复杂任务等等问题，第一步用最简单方式开发一个最简单的可跑的MVP版本
 
-**✅ 第一步：最简单的可运行 MVP 版本（Context Engineering 极简落地）**
+**第一步：最简单的可运行 MVP 版本（Context Engineering 极简落地）**
 
 我们用 **纯 Python + sqlite3**（零额外数据库依赖），只额外依赖 `openai` 库（最常见、最稳定），实现一个**完全可运行的 Market Analysis AI Agent MVP**。
 
@@ -403,7 +403,7 @@ Agent 就会自动维护状态、压缩历史、记录关键事实，**完全不
 
 > 用 LangGraph 实现更复杂的 ReAct 循环和多 Agent 协作（研究 Agent + 报告 Agent），实现这2个复杂点的功能
 
-**✅ 升级版：使用 LangGraph 实现复杂 ReAct 循环 + 多 Agent 协作（Research Agent + Report Agent）**
+**升级版：使用 LangGraph 实现复杂 ReAct 循环 + 多 Agent 协作（Research Agent + Report Agent）**
 
 基于上一个 MVP，我帮你**完整升级**成使用 **LangGraph** 的生产级版本。
 
@@ -613,7 +613,7 @@ python market_agent_langgraph.py
 >
 > https://grok.com/share/bGVnYWN5LWNvcHk_4c789207-6a4a-44cb-a22e-bbdd91d84b42
 
-**✅ Human-in-the-Loop（HITL）集成升级**
+**Human-in-the-Loop（HITL）集成升级**
 
 我已为你**完整集成 Human-in-the-Loop** 到之前的 LangGraph 多 Agent 系统中。人类可以在关键节点**中断 Agent 流程**、审阅中间结果、提供反馈或直接修改状态，然后继续执行。
 
@@ -819,7 +819,7 @@ if __name__ == "__main__":
 
 > Add Slack approval integration
 
-**✅ Slack Approval 集成（Human-in-the-Loop 增强版）**
+**Slack Approval 集成（Human-in-the-Loop 增强版）**
 
 我已为你**新增 Slack Approval** 功能：在 Research 阶段完成后，Agent 会自动：
 
