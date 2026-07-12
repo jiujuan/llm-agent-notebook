@@ -216,7 +216,7 @@ Adapter 不应该负责：
 
 接口可以这样设计：
 
-```
+```typescript
 interface ProviderAdapter {
   readonly adapterType: string;
 
@@ -256,7 +256,7 @@ OpenRouter、vLLM、部分 Qwen 服务可以复用 `openai-compatible`，通过�
 
 但不要假设所有 OpenAI-compatible 服务都完全相同。至少要支持 compatibility profile：
 
-```
+```typescript
 interface CompatibilityProfile {
   chatEndpoint: string;
   modelsEndpoint?: string;
@@ -295,7 +295,7 @@ if (provider === "openai") {
 
 正确做法是能力声明：
 
-```
+```typescript
 interface ModelCapabilities {
   modalities: {
     input: Array<"text" | "image" | "audio" | "video">;
@@ -333,7 +333,7 @@ interface ModelCapabilities {
 
 调用前执行能力协商：
 
-```
+```typescript
 const requirements = inferRequirements(request);
 
 const deployment = registry.resolve({
@@ -350,7 +350,7 @@ const deployment = registry.resolve({
 
 业务代码最好引用逻辑别名：
 
-```
+```typescript
 model: {
   alias: "agent-reasoning"
 }
@@ -670,7 +670,7 @@ interface ConfigMetadata {
 
 Router 的输入不只是模型名称，而应该包含需求和约束：
 
-```
+```typescript
 interface RouteRequest {
   modelAlias: string;
 
@@ -763,7 +763,7 @@ type LLMErrorCode =
 
 错误对象：
 
-```
+```typescript
 class LLMError extends Error {
   code: LLMErrorCode;
   retryable: boolean;
@@ -834,7 +834,7 @@ agentRunId + stepId + toolCallId
 
 完全统一所有参数是不现实的。建议采用“双层参数”：
 
-```
+```typescript
 interface GenerationOptions {
   temperature?: number;
   maxOutputTokens?: number;
@@ -960,7 +960,7 @@ interface AdapterDescriptor {
 
 配置更新建议使用不可变快照：
 
-```
+```typescript
 interface LLMConfigSnapshot {
   version: string;
   providers: ProviderConfig[];
